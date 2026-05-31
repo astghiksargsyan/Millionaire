@@ -1,0 +1,21 @@
+What is the capital of France?Paris,Madrid,Berlin,Moscow
+What is the capital of Armenia?Yerevan,Madrid,Berlin,Mosco
+What is the capital of Russia?Moscow,Madrid,Berlin,Moscow
+What is the capital of USA?Washington,New York,Benton,Chicago
+What is 2+2?4,2,6,10
+What is 2+8?10,2,6,20
+What is 2 + 2*3?8,12,4,7
+How many seconds are in a minute?60,1,66,100
+What city contains the Eiffel Tower?Paris,London,Yerevan,Gyumri
+Who wasn't a member of the Beatles?Justin Timberlake,John Lennon,Ringo Star,Paul McCartney
+Where traditionally do birds fly in winter?South,North,East,Ibiza
+Where did Scotch whisky originate?Scotland,The United States,Ireland,Wales
+What kind of animal is Dumbo from Walt Disney?Elephant,Rabbit,Donkey,Deer
+The computer language 'Ada' is named for what poet's daughter?Lord Byron,Walt Whitman,T.S. Eliot,Emily Dickinson
+What is 4 + 5,9,4,6,12
+What is 12/4?3,6,5,4
+What is 4/4?1,0,4,2
+The capital of Albania?Tirana,Lvov,Zagreb,Moscow
+What is translation of good?хороший,плохой,злой,красивый
+What is 4 + 5?9,10,8,7
+C:\Users\User\AppData\Local\Python\pythoncore-3.14-64\python.exe c:/Users/User/Desktop/lessons/Python/14Files/Millionaire/millionaire_with_class.py?  ,
