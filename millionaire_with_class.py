@@ -3,6 +3,7 @@ import random
 from Question import Questions
 import json
 #add user function
+
 class User:
     def __init__(self, name=None, score=0):
         self.name = name
@@ -107,8 +108,8 @@ def display_question(question_list):
             correct_answers += 1      
         else:
             print("Wrong! Correct answer:", correct)
+            user.save_to_file()
             return correct_answers
-    user.save_to_file()
     return correct_answers
 
 
