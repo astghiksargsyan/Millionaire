@@ -1,26 +1,8 @@
 
 import random
 from Question import Questions
-import json
-#add user function
-
-class User:
-    def __init__(self, name=None, score=0):
-        self.name = name
-        self.score = score
-    def ask_name(self):
-        self.name = input("Enter your name: ")
-        return self.name
-    def save_to_file(self):
-        data = {
-            "name": self.name,
-            "score": self.score
-        }
-        try:
-            with open("users.json", "a", encoding="utf-8") as f:
-                f.write(json.dumps(data) + "\n")
-        except FileNotFoundError:
-            print("File not found!")    
+from Users import User 
+#add user function 
 user = User()
 # helping option section
 def leave_two_options(question, answers):
@@ -109,7 +91,7 @@ def display_question(question_list):
         else:
             print("Wrong! Correct answer:", correct)
             user.save_to_file()
-            return correct_answers
+
     return correct_answers
 
 
