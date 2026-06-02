@@ -2,6 +2,8 @@
 import random
 from Question import Questions
 from Users import User 
+import os
+FILE = "questions.txt"
 #add user function 
 user = User()
 # helping option section
@@ -48,9 +50,18 @@ helping_options = (
 
 # Ready.. Get from file 
 def get_questions():
-    with open("questions.txt", encoding = "utf-8") as f:
-        question_list = f.readlines()
-        return question_list  
+    """Load expenses from JSON, safe with errors."""
+    if not os.path.exists(FILE):
+        print("No data file—starting fresh!")
+        return []
+    try:
+        with open(FILE, "r", encoding="utf-8") as f:
+            question_list = f.readlines()
+            return question_list  
+
+    except Exception as e:
+        print(f"Error loading: {e}")
+        return []
 
 
 def create_question(question_list):
@@ -90,7 +101,7 @@ def display_question(question_list):
             correct_answers += 1      
         else:
             print("Wrong! Correct answer:", correct)
-            user.save_to_file()
+            user.save_to_json()
 
     return correct_answers
 
