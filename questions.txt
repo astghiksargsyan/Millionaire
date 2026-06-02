@@ -1,5 +1,5 @@
 What is the capital of France?Paris,Madrid,Berlin,Moscow
-What is the capital of Armenia?Yerevan,Madrid,Berlin,Mosco
+What is the capital of Armenia?Yerevan,Madrid,Berlin,Moscow
 What is the capital of Russia?Moscow,Madrid,Berlin,Moscow
 What is the capital of USA?Washington,New York,Benton,Chicago
 What is 2+2?4,2,6,10

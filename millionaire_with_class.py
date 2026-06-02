@@ -3,9 +3,26 @@ import random
 from Question import Questions
 from Users import User 
 import os
+import json 
 FILE = "questions.txt"
-#add user function 
-user = User()
+PLAYER_FILE = "users.json"
+
+
+def load_players():
+        if not os.path.exists(PLAYER_FILE):
+            print("No data file—starting fresh!")
+            return []
+        try:
+            with open(PLAYER_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"Error loading: {e}")
+            return []
+players = load_players()   
+
+def save_to_json(players):
+        with open(PLAYER_FILE, "w") as f:
+            json.dump(players, f, indent = 4)
 # helping option section
 def leave_two_options(question, answers):
     correct = answers[0]
@@ -58,7 +75,6 @@ def get_questions():
         with open(FILE, "r", encoding="utf-8") as f:
             question_list = f.readlines()
             return question_list  
-
     except Exception as e:
         print(f"Error loading: {e}")
         return []
@@ -100,9 +116,7 @@ def display_question(question_list):
             print("Correct!")
             correct_answers += 1      
         else:
-            print("Wrong! Correct answer:", correct)
-            user.save_to_json()
-
+            print("Wrong! Correct answer:", correct)   
     return correct_answers
 
 
@@ -120,14 +134,22 @@ def add_question():
 
 # Ready Start game condition section
 def start_game():
+    name = input("Enter your name: ")
     score = display_question(question_list)
+    #user = User(name, score)
+    tmp = {
+        "name": name,
+        "score": score
+    }
+    players.append(tmp)
+    save_to_json(players)
+    print("Success")
     print("Game Over!")
     print("Your score:", score)
 
 
 def start_game_condition():
 
-    user.ask_name()
     print("Choose an option:")
     for num, name, _ in start_game_menu:
         print(f"{num}. {name}")

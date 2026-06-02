@@ -1,7 +1,0 @@
-{'Astx': 6}
-{'Arman': 0}
-{'Amy': 9}
-{'Andrey': 4}
-{'Albert': 0}
-{'Asti': 2}
-{"fgfh'fdg": 0}
