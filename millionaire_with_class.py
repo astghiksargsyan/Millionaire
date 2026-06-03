@@ -1,7 +1,7 @@
 
 import random
 from Question import Questions
-from Users import User 
+#from Users import User 
 import os
 import json 
 FILE = "questions.txt"
@@ -23,6 +23,7 @@ players = load_players()
 def save_to_json(players):
         with open(PLAYER_FILE, "w") as f:
             json.dump(players, f, indent = 4)
+
 # helping option section
 def leave_two_options(question, answers):
     correct = answers[0]
@@ -86,8 +87,10 @@ def create_question(question_list):
         if "?" not in el:
             continue
         question, raw_answers = el.split("?")
-        answers = raw_answers.split(",")
-        my_question_list.append(Questions(question, answers))
+        answers = []
+        for el in raw_answers.split(","):
+            answers.append(el.strip())
+        my_question_list.append(Questions(question.strip(), answers))
     random.shuffle(my_question_list)
     return my_question_list
 
@@ -149,7 +152,6 @@ def start_game():
 
 
 def start_game_condition():
-
     print("Choose an option:")
     for num, name, _ in start_game_menu:
         print(f"{num}. {name}")
