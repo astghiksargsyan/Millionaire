@@ -1,6 +1,6 @@
 
 import random
-from Question import Questions
+from Question import Question
 #from Users import User 
 import os
 import json 
@@ -25,32 +25,14 @@ def save_to_json(players):
             json.dump(players, f, indent = 4)
 
 # helping option section
-def leave_two_options(question, answers):
-    correct = answers[0]
-    wrong_answers = answers[1:]
-    if not wrong_answers:
-        return answers
-    random_wrong = random.choice(wrong_answers)
-    remaining = [correct, random_wrong]
-    random.shuffle(remaining)
-    print("50:50 used!")
-    for i, ans in enumerate(remaining):
-        print(f"{i+1}. {ans}")
-    return remaining
+def leave_two_options(question):
 
-def ask_the_audience(question, answers):
-    correct = answers[0]
-    print("Audience results:")
-    print(f"{correct} - 60%")
-    if len(answers) > 1:
-        print(f"{answers[1]} - 20%")
-    if len(answers) > 2:
-        print(f"{answers[2]} - 10%")
-    if len(answers) > 3:
-        print(f"{answers[3]} - 10%")
-    return None
+    question.leave_two_options()
+    
+def ask_the_audience(question):
+    question.ask_the_audience()
 
-def change_question(question, answers):
+def change_question(question):
     new_question = random.choice(question_list)
     print("New question:")
     print(new_question.text + "?")
@@ -58,17 +40,13 @@ def change_question(question, answers):
         print(f"{i+1}. {ans}")
     return None
 
-
 helping_options = (
     ("1", "50:50", leave_two_options),
     ("2", "Ask the Audience", ask_the_audience),
     ("3", "Change Question", change_question),
 )
-
-
 # Ready.. Get from file 
 def get_questions():
-    """Load expenses from JSON, safe with errors."""
     if not os.path.exists(FILE):
         print("No data file—starting fresh!")
         return []
@@ -80,7 +58,6 @@ def get_questions():
         print(f"Error loading: {e}")
         return []
 
-
 def create_question(question_list):
     my_question_list = []
     for el in question_list:
@@ -90,7 +67,7 @@ def create_question(question_list):
         answers = []
         for el in raw_answers.split(","):
             answers.append(el.strip())
-        my_question_list.append(Questions(question.strip(), answers))
+        my_question_list.append(Question(question.strip(), answers))
     random.shuffle(my_question_list)
     return my_question_list
 
@@ -98,28 +75,20 @@ def create_question(question_list):
 def display_question(question_list):
     correct_answers = 0
     for question_obj in question_list[:3]:
-        answers = question_obj.answers[:]
-        correct = answers[0]
-        random.shuffle(answers)
-        print(question_obj.text + "?")
-        for i, ans in enumerate(answers):
-            print(f"{i+1}. {ans}")
+        question_obj.display_question()
         print("Help options:")
         for num, name, _ in helping_options:
             print(f"{num}. {name}")
         user_answer = input("Your answer (1-3 or help option): ")
         for num, _, func in helping_options:
             if user_answer == num:
-                result = func(question_obj.text, answers)
-                if result:
-                    answers = result
-                    correct = answers[0]
-                break
-        if user_answer == correct:
+                func(question_obj) 
+                continue      
+        if user_answer == question_obj.correct:
             print("Correct!")
             correct_answers += 1      
         else:
-            print("Wrong! Correct answer:", correct)   
+            print("Wrong! Correct answer:", question_obj.correct)   
     return correct_answers
 
 
