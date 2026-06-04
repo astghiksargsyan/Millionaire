@@ -74,6 +74,7 @@ def create_question(question_list):
 # display question
 def display_question(question_list):
     correct_answers = 0
+    
     for question_obj in question_list[:3]:
         question_obj.display_question()
         print("Help options:")
@@ -82,8 +83,9 @@ def display_question(question_list):
         user_answer = input("Your answer (1-3 or help option): ")
         for num, _, func in helping_options:
             if user_answer == num:
-                func(question_obj) 
-                continue      
+                func(question_obj)
+                user_answer = input("Now enter your answer: ")
+                break     
         if user_answer == question_obj.correct:
             print("Correct!")
             correct_answers += 1      
